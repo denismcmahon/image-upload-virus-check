@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,6 +9,8 @@ import { Component } from '@angular/core';
 export class ImageUploadComponent {
   selectedFile: File | null = null;
 
+  constructor(private http: HttpClient) {}
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
@@ -17,14 +20,14 @@ export class ImageUploadComponent {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
 
-      // Log the formData for demonstration purposes
-      console.log(formData.get('image'));
-
-      // Here you would send the formData to your backend
-      // Example:
-      // this.http.post('your-backend-url', formData).subscribe(response => {
-      //   console.log(response);
-      // });
+      this.http.post('http://localhost:3000/upload', formData).subscribe(
+        response => {
+          console.log(response);
+        },
+        error => {
+          console.error(error);
+        }
+      );
     }
   }
 }
