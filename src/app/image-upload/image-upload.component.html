@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Upload an Image</h2>
+  <form (ngSubmit)="onSubmit()" #imageUploadForm="ngForm">
+    <div class="form-group">
+      <input type="file" (change)="onFileSelected($event)" class="form-control-file" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
