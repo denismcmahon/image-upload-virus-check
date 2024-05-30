@@ -1,6 +1,12 @@
 # Use the official Node.js image from the Docker Hub
 FROM node:14
 
+# Install ClamAV
+RUN apt-get update && \
+    apt-get install -y clamav clamav-daemon && \
+    freshclam && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create and set the working directory inside the container
 WORKDIR /usr/src/app
 

@@ -8,3 +8,4 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    command: bash -c "service clamav-freshclam start && service clamav-daemon start && node server.js"
